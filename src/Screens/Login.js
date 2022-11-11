@@ -1,66 +1,21 @@
-// create form to sign up
-
 import React, { useState } from 'react';
-import {
-  View,
-  Text,
-  TextInput,
-  KeyboardAvoidingView,
-  Image,
-  TouchableOpacity, StyleSheet
-} from 'react-native';
+import { View, Text, TextInput, KeyboardAvoidingView, TouchableWithoutFeedback, StyleSheet, Image, TouchableOpacity, Keyboard, Animated } from 'react-native';
 
-export const Cadastro = ({ navigation }) => {
-
-  const [nome, setNome] = useState('');
-  const [rg, setRg] = useState('');
-  const [cpf, setCpf] = useState('');
-  const [endereco, setEndereco] = useState('');
+const Login = ({ navigation }) => {
   const [email, setEmail] = useState('');
-  const [telefone, setTelefone] = useState('');
   const [senha, setSenha] = useState('');
-
 
   return (
     <View style={styles.container}>
       <KeyboardAvoidingView behavior={
         Platform.OS === 'ios' ? 'padding' : null
       } style={styles.container}>
-        <TextInput
-          style={styles.input}
-          placeholder="Digite seu nome"
-          value={nome}
-          onChangeText={text => setNome(text)}
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="Digite seu RG"
-          value={rg}
-          onChangeText={text => setRg(text)}
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="Digite seu CPF"
-          value={cpf}
-          onChangeText={text => setCpf(text)}
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="Digite seu endereço"
-          value={endereco}
-          onChangeText={text => setEndereco(text)}
-        />
+        <Image style={styles.logo} source={require('../assets/logo.png')} />
         <TextInput
           style={styles.input}
           placeholder="Digite seu email"
           value={email}
           onChangeText={text => setEmail(text)}
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="Digite seu telefone"
-          value={telefone}
-          onChangeText={text => setTelefone(text)}
         />
         <TextInput
           style={styles.input}
@@ -71,6 +26,9 @@ export const Cadastro = ({ navigation }) => {
         />
         <View style={styles.buttonContainer}>
           <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Home')}>
+            <Text style={styles.buttonText}>Entrar</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Cadastro')}>
             <Text style={styles.buttonText}>Cadastrar</Text>
           </TouchableOpacity>
         </View>
@@ -88,35 +46,44 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 
+  logo: {
+    width: 330,
+    height: 350,
+    marginBottom: 20,
+    left: -15,
+  },
+
   input: {
     width: 300,
     height: 50,
     backgroundColor: '#fff',
-    borderRadius: 25,
     borderWidth: 1,
     borderColor: '#000',
-    marginBottom: 8,
+    borderRadius: 5,
+    marginBottom: 10,
     padding: 10,
+    fontSize: 16,
   },
 
   buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     width: 300,
+    height: 50,
   },
 
   button: {
-    width: '100%',
-    height: 50,
-    backgroundColor: '#000',
-    borderRadius: 25,
+    backgroundColor: '#3498db',
+    borderRadius: 3,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 25,
+    width: 140,
   },
 
   buttonText: {
-    color: '#fff',
     fontSize: 16,
+    color: '#fff',
   },
 });
+
+export default Login;

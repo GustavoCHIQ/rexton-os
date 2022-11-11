@@ -1,9 +1,10 @@
 // consultar api
 
-import axios from 'axios';
+import axios from 'react-native-axios'
 
-const api = axios.create({
-  baseURL: 'http://localhost:3333',
+const Api = axios.create({
+  baseURL: 'http://18.228.192.34:3000/',
+  timeout: 10000,
 });
 
-export default api;
+export default Api;

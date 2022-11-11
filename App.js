@@ -1,12 +1,4 @@
-import * as React from 'react';
-import { StatusBar } from 'react-native';
-import { Rotas } from './src/Rotas';
+import React from 'react'
+import Navigation from "./src/Navigation"
 
-export default function App() {
-  return (
-    <React.Fragment>
-      <StatusBar barStyle="dark-content" backgroundColor={'transparent'} translucent />
-      <Rotas />
-    </React.Fragment>
-  )
-}
+export default props => <Navigation />
