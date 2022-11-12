@@ -10,7 +10,7 @@ const Login = ({ navigation }) => {
       <KeyboardAvoidingView behavior={
         Platform.OS === 'ios' ? 'padding' : null
       } style={styles.container}>
-        <Image style={styles.logo} source={require('../assets/logo.png')} />
+        <Image style={styles.logo} source={require('../Assets/logo.png')} />
         <TextInput
           style={styles.input}
           placeholder="Digite seu email"

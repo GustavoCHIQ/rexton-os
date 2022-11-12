@@ -20,7 +20,7 @@ export const ServiceCard = ({ servico }) => {
         >
             <View style={styles.container}>
                 <View style={styles.card}>
-                    <Image style={styles.img} source={require('../assets/red-flag.png')} />
+                    <Image style={styles.img} source={require('../Assets/red-flag.png')} />
                     <View>
                         <Text style={styles.cardDescriptionText}>Cliente: {servico.cliente.nome}</Text>
 

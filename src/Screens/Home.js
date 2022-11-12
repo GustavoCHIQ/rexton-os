@@ -3,80 +3,25 @@ import {
   StyleSheet,
   FlatList,
   View,
-  TextInput,
-  Text,
-  Image,
   ActivityIndicator,
+  Button
 } from 'react-native';
 
-import Api from './../services/Api';
-
-import { ServiceCard } from '../components/ServiceCard';
+import { ServiceCard } from '../Components/ServiceCard';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-const searchBar = StyleSheet.create({
-  container: {
-    // backgroundColor: 'red',
-  },
-  input: {
-    fontSize: 10,
-    padding: 20,
-    paddingLeft: 50,
-    backgroundColor: '#F2F2F2',
-    borderRadius: 50,
-  },
-  icon: {
-    color: '#747476',
-    position: 'absolute',
-    left: 20,
-    bottom: 22,
-    fontSize: 22,
-  },
-});
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 25,
-    paddingTop: 25,
-    paddingBottom: 0,
-    backgroundColor: '#fff',
-  },
-  imgPokeball: {
-    zIndex: -1,
-    opacity: 0.025,
-    width: 400,
-    height: 400,
-    position: 'absolute',
-    alignSelf: 'center',
-    top: -200,
-  },
-  title: {
-    left: 25,
-    fontSize: 30,
-    fontWeight: 'bold',
-  },
-  text1: {
-    fontSize: 10,
-    lineHeight: 15,
-    marginTop: 10,
-    left: 25
-  },
-  list: {
-    marginTop: 45,
-  },
-});
+import Api from '../Services/Api';
+import { Icon } from 'react-native-vector-icons/FontAwesome5';
 
 const Home = () => {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
-  const [q, setQ] = useState('');
 
   useEffect(() => {
-    pegarPokemon();
+    obterDados();
   }, []);
 
-  const pegarPokemon = () => {
+  const obterDados = () => {
     Api.get('/ordemdeservico')
       .then(response => {
         setLoading(true);
@@ -90,22 +35,31 @@ const Home = () => {
       })
   };
 
-  const jsxPokemons = () => (
-    <SafeAreaView styles={styles.container} >
+  const jsxServicos = () => (
+    <SafeAreaView>
       <View>
       </View>
-      <View style={searchBar.container}>
+      <View>
       </View>
       <FlatList
-        data={dataFiltrado}
+        data={data}
         renderItem={Item}
         style={styles.list} />
+      {/* criar botao para add */}
+      <View style={styles.button}>
+        <Button
+          title="Adicionar"
+          onPress={() => { console.log('Adicionar') }}
+        />
+      </View>
     </SafeAreaView>
   );
 
   const Item = propsItem => {
     return (
-      <ServiceCard servico={propsItem.item} />
+      <View>
+        <ServiceCard servico={propsItem.item} />
+      </View>
     );
   };
 
@@ -115,25 +69,51 @@ const Home = () => {
     </View>
   );
 
-  let dataFiltrado;
-
-  if (q == '') {
-    dataFiltrado = data;
-  } else {
-    dataFiltrado = [];
-    let q2 = q.toUpperCase();
-    for (let key in data) {
-      let texto = `${data[key].name} ${data[key].id}`;
-      if (texto.toUpperCase().indexOf(q2) >= 0) {
-        dataFiltrado.push(data[key]);
-      }
-    }
-  }
   if (loading) {
     return jsxLoading();
   } else {
-    return jsxPokemons();
+    return jsxServicos();
   }
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 1,
+    backgroundColor: '#fff',
+  },
+  title: {
+    left: 25,
+    fontSize: 30,
+    fontWeight: 'bold',
+  },
+  text1: {
+    fontSize: 10,
+    lineHeight: 15,
+    marginTop: 10,
+    left: 25
+  },
+  list: {
+    marginTop: -20,
+  },
+  floatingButtonStyle: {
+    resizeMode: 'contain',
+    width: 70,
+    height: 70,
+  },
+  button: {
+    // resizeMode: 'contain',
+    // textAlignVertical: 'center',
+    // textAlign: 'center',
+    // width: 50,
+    // height: 50,
+    // color: '#fff',
+    // fontSize: 40,
+    // borderRadius: 100,
+    // left: 330,
+    // bottom: -350,
+    // backgroundColor: '#0094df',
+  }
+});
 
 export default Home;

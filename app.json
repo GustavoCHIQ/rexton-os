@@ -1,11 +1,11 @@
 {
   "expo": {
-    "userInterfaceStyle": "light",
     "name": "rexton-os",
     "slug": "rexton-os",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
@@ -24,10 +24,16 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
+      },
+      "package": "com.rextonos",
+      "web": {
+        "favicon": "./assets/favicon.png"
       }
     },
-    "web": {
-      "favicon": "./assets/favicon.png"
+    "extra": {
+      "eas": {
+        "projectId": "5b678842-bb11-4190-b71d-669d2aae4a17"
+      }
     }
   }
 }

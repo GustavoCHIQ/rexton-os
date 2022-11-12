@@ -31,7 +31,7 @@ export function CadastroNavigation() {
     return (
         <Stack.Navigator
             screenOptions={{ headerShown: true }}>
-            <Stack.Screen name="Cadastro" component={Cadastro} />
+            <Stack.Screen name="Cadastro de Clientes" component={Cadastro} />
         </Stack.Navigator>
     )
 }
