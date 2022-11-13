@@ -5,6 +5,7 @@ import HomeNavigationTabs from './BottomTabs'
 import Login from '../Screens/Login'
 import Home from '../Screens/Home'
 import Cadastro from '../Screens/Cadastro'
+import CriarOrdemDeServico from '../Screens/CriarOrdemDeServico'
 
 const Stack = createNativeStackNavigator()
 
@@ -15,6 +16,8 @@ export default props => (
     >
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Home" component={HomeNavigationTabs} />
+
+        <Stack.Screen name="CriarOrdemDeServico" component={CriarOrdemDeServico} />
     </Stack.Navigator>
 )
 
@@ -32,6 +35,15 @@ export function CadastroNavigation() {
         <Stack.Navigator
             screenOptions={{ headerShown: true }}>
             <Stack.Screen name="Cadastro de Clientes" component={Cadastro} />
+        </Stack.Navigator>
+    )
+}
+
+export function CriarOrdemDeServicoNavigation() {
+    return (
+        <Stack.Navigator
+            screenOptions={{ headerShown: true }}>
+            <Stack.Screen name="Criar Ordem de Serviço" component={CriarOrdemDeServico} />
         </Stack.Navigator>
     )
 }

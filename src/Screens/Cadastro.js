@@ -4,7 +4,6 @@ import {
   Text,
   TextInput,
   KeyboardAvoidingView,
-  Image,
   TouchableOpacity, StyleSheet
 } from 'react-native';
 
@@ -112,7 +111,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 25,
   },
-
   buttonText: {
     color: '#fff',
     fontSize: 16,

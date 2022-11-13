@@ -11,8 +11,8 @@ import { useNavigation } from '@react-navigation/native';
 export const ServiceCard = ({ servico }) => {
     const navigation = useNavigation();
 
-    const handleDetails = (pokemonInfo) => {
-        navigation.navigate('Details', { pokemonInfo })
+    const handleDetails = (serviceInfo) => {
+        navigation.navigate('Details', { serviceInfo })
     }
 
     return (
@@ -63,13 +63,10 @@ const styles = StyleSheet.create({
         borderTopLeftRadius: 10,
         borderTopRightRadius: 10,
         marginLeft: 10,
-        // alignItems: 'center',
-        // justifyContent: 'center',
     },
     cardBody: {
         width: '100%',
         height: 50,
-        // alignItems: 'center',
         justifyContent: 'center',
     },
     cardTitle: {

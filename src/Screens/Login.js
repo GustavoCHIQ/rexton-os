@@ -1,5 +1,13 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, KeyboardAvoidingView, TouchableWithoutFeedback, StyleSheet, Image, TouchableOpacity, Keyboard, Animated } from 'react-native';
+import {
+  View,
+  Text,
+  TextInput,
+  KeyboardAvoidingView,
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+} from 'react-native';
 
 const Login = ({ navigation }) => {
   const [email, setEmail] = useState('');
@@ -38,21 +46,18 @@ const Login = ({ navigation }) => {
 }
 
 const styles = StyleSheet.create({
-
   container: {
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
   },
-
   logo: {
     width: 330,
     height: 350,
     marginBottom: 20,
     left: -15,
   },
-
   input: {
     width: 300,
     height: 50,
@@ -64,14 +69,12 @@ const styles = StyleSheet.create({
     padding: 10,
     fontSize: 16,
   },
-
   buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     width: 300,
     height: 50,
   },
-
   button: {
     backgroundColor: '#3498db',
     borderRadius: 3,
@@ -79,7 +82,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: 140,
   },
-
   buttonText: {
     fontSize: 16,
     color: '#fff',
