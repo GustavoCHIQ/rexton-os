@@ -16,13 +16,13 @@ import { ServiceCard } from '../Components/ServiceCard';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import Api from '../Services/Api';
+import { listarOrdemDeServico } from '../Services/OrdemDeServicoService';
 
 const Home = ({ navigation }) => {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   const [date, setDate] = useState(new Date().toISOString().slice(0, 10).replace(/-/g, "/").split("/").reverse().join("/"));
-
 
   const showDatePicker = () => {
     setDatePickerVisibility(true);
@@ -40,26 +40,39 @@ const Home = ({ navigation }) => {
     hideDatePicker();
   };
 
+  // atualizar lista de serviços
+  const updateList = () => {
+    listarOrdemDeServico()
+      .then(response => {
+        setData(response.data);
+        setLoading(false);
+      })
+      .catch(error => {
+        console.log(error);
+      })
+  }
 
   useEffect(() => {
     obterDados();
   }, []);
 
   const obterDados = () => {
-    Api.get('/ordemdeservico')
+    listarOrdemDeServico()
       .then(response => {
         setLoading(true);
-        setData(response.data);
-      })
-      .catch(error => {
-        console.log(error);
-      })
-      .finally(() => {
+        setData(response);
+      }).finally(() => {
         setLoading(false);
       })
   };
 
-
+  const jsxEmpity = () => {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.text}>Nenhum serviço encontrado</Text>
+      </View>
+    )
+  }
 
   const jsxServicos = () => (
     <SafeAreaView>
@@ -78,9 +91,12 @@ const Home = ({ navigation }) => {
         </View>
       </View>
       <FlatList
-        data={data}
+        data={data.sort((a, b) => b.id_os - a.id_os)}
         renderItem={Item}
-        style={styles.list} />
+        ListEmptyComponent={jsxEmpity}
+        style={styles.list}
+        key={item => item.id_ordemdeservico}
+      />
       <TouchableOpacity
         onPress={() => navigation.navigate('CriarOrdemDeServico')}
       >
@@ -176,6 +192,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 10,
     backgroundColor: '#fff',
+  },
+  text: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#000',
+    textAlign: 'center',
+    marginTop: 20,
   },
 });
 

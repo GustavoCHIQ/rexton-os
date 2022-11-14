@@ -9,21 +9,14 @@ import {
 import { useNavigation } from '@react-navigation/native';
 
 export const ServiceCard = ({ servico }) => {
-    const navigation = useNavigation();
-
-    const handleDetails = (serviceInfo) => {
-        navigation.navigate('Details', { serviceInfo })
-    }
 
     return (
-        <TouchableOpacity activeOpacity={0.7}
-        >
+        <TouchableOpacity activeOpacity={0.7}>
             <View style={styles.container}>
                 <View style={styles.card}>
                     <Image style={styles.img} source={require('../Assets/red-flag.png')} />
                     <View>
-                        <Text style={styles.cardDescriptionText}>Cliente: {servico.cliente.nome}</Text>
-
+                        <Text style={styles.cardDescriptionText}>Cliente: {servico?.cliente?.nome}</Text>
                         <Text style={styles.cardTitleText}>ID OS: {servico.id_os}</Text>
 
                         <Text style={styles.cardTitleText}>Data: 25/03/1999 15:30:00</Text>
