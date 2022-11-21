@@ -13,7 +13,6 @@ import { useNavigation } from '@react-navigation/native';
 import Api from "../Services/Api";
 import { SelectList } from 'react-native-dropdown-select-list'
 import { SafeAreaView } from "react-native-safe-area-context";
-import { listarOrdemDeServico } from "../Services/OrdemDeServicoService";
 
 const CriarOrdemDeServico = () => {
     const [cliente, setCliente] = useState('');

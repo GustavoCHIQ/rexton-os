@@ -5,7 +5,8 @@ import Icon from 'react-native-vector-icons/FontAwesome5'
 
 import {
     HomeNavigation,
-    CadastroNavigation
+    CadastroNavigation,
+    CadastrarFuncionarioNavigation,
 } from './StackNavigation';
 
 const Tab = createBottomTabNavigator();
@@ -67,6 +68,32 @@ export default function HomeNavigationTabs() {
                                 }}>
                                 {/* Texto Aqui */}
                                 Cliente
+                            </Text>
+                        </>
+                    )
+                }}
+            />
+            <Tab.Screen
+                name="CadastroFuncionarioTab"
+                component={CadastrarFuncionarioNavigation}
+                options={{
+                    tabBarIcon: ({ focused }) => (
+                        <>
+                            <Icon
+                                name='user-plus'
+                                size={20}
+                                color={focused ? '#0a9396' : '#d62828'}
+                            />
+                            <Text
+                                allowFontScaling={false}
+                                style={{
+                                    color: focused ? '#0a9396' : '#d62828',
+                                    width: 60,
+                                    fontSize: 11,
+                                    textAlign: 'center'
+                                }}>
+                                {/* Texto Aqui */}
+                                Funcionário
                             </Text>
                         </>
                     )

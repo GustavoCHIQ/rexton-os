@@ -15,7 +15,6 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import { ServiceCard } from '../Components/ServiceCard';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import Api from '../Services/Api';
 import { listarOrdemDeServico } from '../Services/OrdemDeServicoService';
 
 const Home = ({ navigation }) => {
@@ -36,21 +35,8 @@ const Home = ({ navigation }) => {
     // Converter data para string e formatar para o padrão brasileiro
     const dateStr = date.toISOString().slice(0, 10).replace(/-/g, "/").split("/").reverse().join("/");
     setDate(dateStr);
-    console.warn("A date has been picked: ", dateStr);
     hideDatePicker();
   };
-
-  // atualizar lista de serviços
-  const updateList = () => {
-    listarOrdemDeServico()
-      .then(response => {
-        setData(response.data);
-        setLoading(false);
-      })
-      .catch(error => {
-        console.log(error);
-      })
-  }
 
   useEffect(() => {
     obterDados();

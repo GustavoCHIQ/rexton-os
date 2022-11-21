@@ -4,8 +4,9 @@ import HomeNavigationTabs from './BottomTabs'
 
 import Login from '../Screens/Login'
 import Home from '../Screens/Home'
-import Cadastro from '../Screens/Cadastro'
+import Cadastro from '../Screens/CadastroCliente'
 import CriarOrdemDeServico from '../Screens/CriarOrdemDeServico'
+import CadastrarFuncionario from './../Screens/CadastrarFuncionario';
 
 const Stack = createNativeStackNavigator()
 
@@ -44,6 +45,15 @@ export function CriarOrdemDeServicoNavigation() {
         <Stack.Navigator
             screenOptions={{ headerShown: true }}>
             <Stack.Screen name="Criar Ordem de Serviço" component={CriarOrdemDeServico} />
+        </Stack.Navigator>
+    )
+}
+
+export function CadastrarFuncionarioNavigation() {
+    return (
+        <Stack.Navigator
+            screenOptions={{ headerShown: true }}>
+            <Stack.Screen name="Cadastrar Funcionário" component={CadastrarFuncionario} />
         </Stack.Navigator>
     )
 }
