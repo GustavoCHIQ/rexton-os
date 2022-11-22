@@ -9,9 +9,35 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
+import Api from '../Services/Api';
+
 const Login = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
+
+  const logar = () => {
+    const usuario = {
+      email: email,
+      senha: senha,
+    };
+
+    if (!email || !senha) {
+      alert('Preencha todos os campos!');
+      return;
+    } else {
+      Api.post('/login', usuario)
+        .then(response => {
+          alert('Login realizado com sucesso!');
+          setTimeout(() => {
+            navigation.navigate('Home');
+          }, 2000);
+        })
+        .catch(error => {
+          alert('Erro ao realizar login!');
+        });
+    }
+  };
+
 
   return (
     <View style={styles.container}>
@@ -36,7 +62,8 @@ const Login = ({ navigation }) => {
           <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Home')}>
             <Text style={styles.buttonText}>Entrar</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Cadastro')}>
+          {/* Acessar tela de cadastro de usuario */}
+          <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('CadastrarUsuario')}>
             <Text style={styles.buttonText}>Cadastrar</Text>
           </TouchableOpacity>
         </View>
@@ -53,8 +80,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   logo: {
-    width: 330,
-    height: 350,
+    width: 230,
+    height: 250,
     marginBottom: 20,
     left: -15,
   },

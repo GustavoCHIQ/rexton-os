@@ -7,6 +7,10 @@ import {
     HomeNavigation,
     CadastroNavigation,
     CadastrarFuncionarioNavigation,
+    CadastrarServicoNavigation,
+    CriarOrdemDeServicoNavigation,
+    CadastrarUsuarioNavigation,
+    DetalhesDaOSNavigation
 } from './StackNavigation';
 
 const Tab = createBottomTabNavigator();
@@ -94,6 +98,32 @@ export default function HomeNavigationTabs() {
                                 }}>
                                 {/* Texto Aqui */}
                                 Funcionário
+                            </Text>
+                        </>
+                    )
+                }}
+            />
+            <Tab.Screen
+                name="CadastroServicoTab"
+                component={CadastrarServicoNavigation}
+                options={{
+                    tabBarIcon: ({ focused }) => (
+                        <>
+                            <Icon
+                                name='plus'
+                                size={20}
+                                color={focused ? '#0a9396' : '#d62828'}
+                            />
+                            <Text
+                                allowFontScaling={false}
+                                style={{
+                                    color: focused ? '#0a9396' : '#d62828',
+                                    width: 50,
+                                    fontSize: 11,
+                                    textAlign: 'center'
+                                }}>
+                                {/* Texto Aqui */}
+                                Serviços
                             </Text>
                         </>
                     )

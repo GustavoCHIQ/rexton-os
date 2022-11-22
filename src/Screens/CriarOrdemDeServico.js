@@ -13,6 +13,7 @@ import { useNavigation } from '@react-navigation/native';
 import Api from "../Services/Api";
 import { SelectList } from 'react-native-dropdown-select-list'
 import { SafeAreaView } from "react-native-safe-area-context";
+import { ScrollView } from "react-native-gesture-handler";
 
 const CriarOrdemDeServico = () => {
     const [cliente, setCliente] = useState('');
@@ -94,11 +95,15 @@ const CriarOrdemDeServico = () => {
             cliente: selectedCliente,
             funcionario: selectedFuncionario,
             servico: selectedServico,
+            observacao: observacao
         };
 
         Api.post('/ordemdeservico', ordemDeServico)
             .then(response => {
                 alert('Ordem de Serviço criada com sucesso!');
+                setTimeout(() => {
+                    navigation.navigate('Home');
+                }, 2000);
             })
             .catch(error => {
                 console.log(error);
@@ -106,65 +111,68 @@ const CriarOrdemDeServico = () => {
     };
 
     return (
-        <KeyboardAvoidingView>
-            <SafeAreaView>
-                <View style={styles.lista_container}>
-                    <Text>Cliente</Text>
-                    <SelectList
-                        data={cliente}
-                        placeholder="Selecione um cliente"
-                        searchPlaceholder="Pesquisar"
-                        setSelected={(val) => setSelectedCliente(val)}
-                        selected={selectedCliente}
-                        style={styles.lista}
-                        onSelect={() => setSelectedCliente}
-                        maxHeight={150}
-                        keyExtractor={item => item.key}
-                    />
+        <ScrollView>
+            <KeyboardAvoidingView>
+                <SafeAreaView>
+                    <View style={styles.lista_container}>
+                        <Text>Cliente</Text>
+                        <SelectList
+                            data={cliente}
+                            placeholder="Selecione um cliente"
+                            searchPlaceholder="Pesquisar"
+                            setSelected={(val) => setSelectedCliente(val)}
+                            selected={selectedCliente}
+                            style={styles.lista}
+                            onSelect={() => setSelectedCliente}
+                            maxHeight={150}
+                            keyExtractor={item => item.key}
+                        />
 
-                    <Text>Funcionário</Text>
-                    <SelectList
-                        data={funcionario}
-                        placeholder="Selecione um funcionário"
-                        searchPlaceholder="Pesquisar"
-                        setSelected={(val) => setSelectedFuncionario(val)}
-                        selected={selectedFuncionario}
-                        style={styles.lista}
-                        onSelect={() => setSelectedFuncionario}
-                        maxHeight={150}
-                        keyExtractor={item => item.key}
-                    />
+                        <Text>Funcionário</Text>
+                        <SelectList
+                            data={funcionario}
+                            placeholder="Selecione um funcionário"
+                            searchPlaceholder="Pesquisar"
+                            setSelected={(val) => setSelectedFuncionario(val)}
+                            selected={selectedFuncionario}
+                            style={styles.lista}
+                            onSelect={() => setSelectedFuncionario}
+                            maxHeight={150}
+                            keyExtractor={item => item.key}
+                        />
 
-                    <Text>Serviços</Text>
-                    <SelectList
-                        data={servico}
-                        placeholder="Selecione um serviço"
-                        searchPlaceholder="Pesquisar"
-                        setSelected={(val) => setSelectedServico(val)}
-                        selected={selectedServico}
-                        style={styles.lista}
-                        onSelect={() => setSelectedServico}
-                        maxHeight={150}
-                        keyExtractor={item => item.key}
-                    />
+                        <Text>Serviços</Text>
+                        <SelectList
+                            data={servico}
+                            placeholder="Selecione um serviço"
+                            searchPlaceholder="Pesquisar"
+                            setSelected={(val) => setSelectedServico(val)}
+                            selected={selectedServico}
+                            style={styles.lista}
+                            onSelect={() => setSelectedServico}
+                            maxHeight={150}
+                            keyExtractor={item => item.key}
+                        />
 
-                    <View style={styles.input_observacao}>
-                        <Text>Observação</Text>
-                        <TextInput
-                            style={styles.observacao}
-                            onChangeText={text => setObservacao(text)}
-                            value={observacao}
+                        <View style={styles.input_observacao}>
+                            <Text>Observação</Text>
+                            <TextInput
+                                style={styles.observacao}
+                                onChangeText={text => setObservacao(text)}
+                                value={observacao}
+                                multiline={true}
+                            />
+                        </View>
+                    </View>
+                    <View>
+                        <Button
+                            title="Cadastar"
+                            onPress={() => criarOrdemDeServico()}
                         />
                     </View>
-                </View>
-                <View style={styles.button}>
-                    <Button
-                        title="Salvar"
-                        onPress={() => criarOrdemDeServico()}
-                    />
-                </View>
-            </SafeAreaView>
-        </KeyboardAvoidingView>
+                </SafeAreaView>
+            </KeyboardAvoidingView>
+        </ScrollView>
     );
 }
 
@@ -175,7 +183,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     lista_container: {
-        paddingTop: 50,
         backgroundColor: '#fff',
         padding: 10,
     },
@@ -202,11 +209,11 @@ const styles = StyleSheet.create({
         padding: 10,
     },
     input_observacao: {
-        marginTop: 20,
-        marginBottom: 10,
+        // marginTop: 20,
+        // marginBottom: 10,
     },
     observacao: {
-        height: 100,
+        // height: 100,
         width: '100%',
         backgroundColor: '#fff',
         borderColor: '#000',
@@ -214,12 +221,6 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         padding: 10,
     },
-    btnCadastrar: {
-        marginTop: 20,
-        marginBottom: 10,
-        backgroundColor: '#fff',
-    },
-
 });
 
 

@@ -1,18 +1,16 @@
 import React, { useState } from 'react';
 import {
   View,
-  Text,
   TextInput,
   KeyboardAvoidingView,
   Button,
   StyleSheet
 } from 'react-native';
+
 import { ScrollView } from 'react-native-gesture-handler';
-
-
 import Api from '../Services/Api';
 
-const Cadastro = () => {
+const CadastrarCliente = () => {
 
   const [nome, setNome] = useState('');
   const [cpf, setCpf] = useState('');
@@ -105,10 +103,11 @@ const Cadastro = () => {
             value={dataNascimento}
             onChangeText={text => setDataNascimento(text)}
           />
-          <View style={styles.buttonContainer}>
+          <View style={styles.button}>
             <Button
-              title="Cadastrar"
+              title='Cadastrar'
               onPress={cadastrarCliente}
+              style={styles.button}
             />
           </View>
         </KeyboardAvoidingView>
@@ -122,7 +121,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    paddingTop: 50,
+    paddingTop: 10,
     alignItems: 'center',
     justifyContent: 'center'
   },
@@ -137,26 +136,11 @@ const styles = StyleSheet.create({
     marginBottom: 8,
     padding: 10,
   },
-
-  buttonContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    width: 300,
-  },
-
   button: {
-    width: '100%',
-    height: 50,
-    backgroundColor: '#000',
-    borderRadius: 25,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 25,
-  },
-  buttonText: {
-    color: '#fff',
-    fontSize: 16,
-  },
+    width: 300,
+    marginTop: 10,
+    backgroundColor: '#fff',
+  }
 });
 
-export default Cadastro;
+export default CadastrarCliente;

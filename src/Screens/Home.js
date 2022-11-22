@@ -5,8 +5,8 @@ import {
   View,
   ActivityIndicator,
   TouchableOpacity,
-  Button,
-  Text
+  RefreshControl,
+  Text,
 } from 'react-native';
 
 import DateTimePickerModal from "react-native-modal-datetime-picker";
@@ -22,6 +22,7 @@ const Home = ({ navigation }) => {
   const [data, setData] = useState([]);
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   const [date, setDate] = useState(new Date().toISOString().slice(0, 10).replace(/-/g, "/").split("/").reverse().join("/"));
+  const [refreshing, setRefreshing] = useState(false)
 
   const showDatePicker = () => {
     setDatePickerVisibility(true);
@@ -38,6 +39,8 @@ const Home = ({ navigation }) => {
     hideDatePicker();
   };
 
+
+
   useEffect(() => {
     obterDados();
   }, []);
@@ -52,6 +55,11 @@ const Home = ({ navigation }) => {
       })
   };
 
+  const onRefresh = () => {
+    setLoading(true);
+    obterDados();
+  };
+
   const jsxEmpity = () => {
     return (
       <View style={styles.container}>
@@ -62,7 +70,7 @@ const Home = ({ navigation }) => {
 
   const jsxServicos = () => (
     <SafeAreaView>
-      <View style={styles.data_container}>
+      {/* <View style={styles.data_container}>
         <View>
           <Text style={styles.data_seleciona}>Data: {date} </Text>
         </View>
@@ -75,13 +83,19 @@ const Home = ({ navigation }) => {
             onCancel={hideDatePicker}
           />
         </View>
-      </View>
+      </View> */}
       <FlatList
-        data={data.sort((a, b) => b.id_os - a.id_os)}
+        data={data.sort((a, b) => a.id_os - b.id_os)}
         renderItem={Item}
         ListEmptyComponent={jsxEmpity}
         style={styles.list}
         key={item => item.id_ordemdeservico}
+        refreshControl={
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={onRefresh}
+          />
+        }
       />
       <TouchableOpacity
         onPress={() => navigation.navigate('CriarOrdemDeServico')}
@@ -146,7 +160,7 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 40,
     borderRadius: 100,
-    left: 330,
+    left: "80%",
     bottom: "auto",
     backgroundColor: '#0094df',
   },
