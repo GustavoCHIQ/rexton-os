@@ -27,7 +27,7 @@ export const ServiceCard = ({ servico }) => {
                 <View style={styles.card}>
                     <Image style={styles.img} source={require('../Assets/red-flag.png')} />
                     <View>
-                        <Text style={styles.cardDescriptionText}>Cliente: {cliente}</Text>
+                        <Text style={styles.nomeCliente}>Cliente: {cliente}</Text>
                         <Text style={styles.cardTitleText}>ID OS: {idOS}</Text>
 
                         <Text style={styles.cardTitleText}>Data: {dataFormatada}</Text>
@@ -43,52 +43,36 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        padding: 10,
+        marginTop: 10,
     },
     card: {
-        backgroundColor: '#fff',
-        width: '100%',
+        width: 350,
         height: 100,
+        backgroundColor: '#fff',
         borderRadius: 10,
+        flexDirection: 'row',
+        alignItems: 'center',
+        padding: 20,
         elevation: 5,
-        shadowColor: '#000',
-        shadowOpacity: 0.2,
-        shadowOffset: {
-            width: 1,
-            height: 3,
-        },
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    cardHeader: {
-        width: '100%',
-        height: 5,
-        backgroundColor: '#f2f2',
-        borderTopLeftRadius: 10,
-        borderTopRightRadius: 10,
-        marginLeft: 10,
-    },
-    cardBody: {
-        width: '100%',
-        height: 50,
-        justifyContent: 'center',
-    },
-    cardTitle: {
-        width: '100%',
-        height: 25,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    cardTitleText: {
-        fontSize: 14,
-        fontWeight: 'bold',
+        marginBottom: 10,
     },
     img: {
-        width: 50,
-        height: 50,
-        position: 'absolute',
-        left: 10,
-        justifyContent: 'center',
-        alignItems: 'center',
+        width: 60,
+        height: 60,
+        marginRight: 20,
+        marginLeft: -10,
+    },
+    nomeCliente: {
+        color: '#000',
+        fontSize: 20,
+        fontWeight: 'bold',
+        marginLeft: -10,
+        borderRadius: 5,
+    },
+    cardTitleText: {
+        color: '#000',
+        fontSize: 14,
+        marginLeft: -10,
+        borderRadius: 5,
     },
 });

@@ -50,6 +50,8 @@ const Home = ({ navigation }) => {
       .then(response => {
         setLoading(true);
         setData(response);
+      }).catch(error => {
+
       }).finally(() => {
         setLoading(false);
       })
@@ -163,42 +165,43 @@ const styles = StyleSheet.create({
     left: "80%",
     bottom: "auto",
     backgroundColor: '#0094df',
+    marginTop: 10,
   },
-  filtro: {
-    width: 100,
-    height: 50,
-    color: '#fff',
-    fontSize: 20,
-    borderRadius: 100,
-    left: 330,
-    bottom: -350,
-    backgroundColor: '#0094df',
-  },
-  data_container: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    padding: 10,
-    backgroundColor: '#fff',
-  },
-  data_seleciona: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: '#000',
-  },
-  btn_filtrar: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    padding: 10,
-    backgroundColor: '#fff',
-  },
+  // filtro: {
+  //   width: 100,
+  //   height: 50,
+  //   color: '#fff',
+  //   fontSize: 20,
+  //   borderRadius: 100,
+  //   left: 330,
+  //   bottom: -350,
+  //   backgroundColor: '#0094df',
+  // },
+  // data_container: {
+  //   flexDirection: 'row',
+  //   justifyContent: 'space-between',
+  //   alignItems: 'center',
+  //   padding: 10,
+  //   backgroundColor: '#fff',
+  // },
+  // data_seleciona: {
+  //   fontSize: 20,
+  //   fontWeight: 'bold',
+  //   color: '#000',
+  // },
+  // btn_filtrar: {
+  //   flexDirection: 'row',
+  //   justifyContent: 'space-between',
+  //   alignItems: 'center',
+  //   padding: 10,
+  //   backgroundColor: '#fff',
+  // },
   text: {
     fontSize: 20,
     fontWeight: 'bold',
     color: '#000',
     textAlign: 'center',
-    marginTop: 20,
+    margin: 20,
   },
 });
 

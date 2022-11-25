@@ -6,7 +6,10 @@ import {
     TextInput,
     Button,
     KeyboardAvoidingView,
+    Alert,
 } from 'react-native';
+
+import { useNavigation } from '@react-navigation/native';
 
 import Api from "../Services/Api";
 
@@ -18,8 +21,9 @@ const CadastrarUsuario = () => {
     const [email, setEmail] = useState('');
     const [telefone, setTelefone] = useState('');
     const [senha, setSenha] = useState('');
-
     const [confirmarSenha, setConfirmarSenha] = useState('');
+
+    const navigation = useNavigation();
 
     const cadastrar = () => {
         if (senha !== confirmarSenha) {
@@ -39,11 +43,21 @@ const CadastrarUsuario = () => {
 
         Api.post('/usuario', usuario)
             .then(response => {
-                alert('Usuário cadastrado com sucesso!');
-                navigation.navigate('Login');
+                Alert.alert(
+                    'Sucesso',
+                    'Usuário cadastrado com sucesso',
+                    [{ text: 'OK' }],
+                )
+                setTimeout(() => {
+                    navigation.navigate('Login');
+                }, 2000);
             })
             .catch(error => {
-                alert('Erro ao cadastrar usuário!');
+                Alert.alert(
+                    'Erro',
+                    'Erro ao cadastrar usuário',
+                    [{ text: 'OK' }],
+                )
             });
     };
 

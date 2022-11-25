@@ -6,6 +6,7 @@ import {
     TextInput,
     Button,
     KeyboardAvoidingView,
+    Alert,
 } from 'react-native';
 
 import Api from "../Services/Api";
@@ -24,18 +25,30 @@ const CadastrarServico = () => {
         }
 
         if (!descricao || !valor) {
-            alert('Preencha todos os campos!');
+            Alert.alert(
+                'Erro',
+                'Preencha todos os campos',
+                [{ text: 'OK' }],
+            )
             return;
         } else {
             Api.post('/servico', servico)
                 .then(response => {
-                    alert('Serviço cadastrado com sucesso!');
+                    Alert.alert(
+                        'Sucesso',
+                        'Serviço cadastrado com sucesso',
+                        [{ text: 'OK' }],
+                    )
                     setTimeout(() => {
                         navigation.goBack();
                     }, 2000);
                 })
                 .catch(error => {
-                    alert('Erro ao cadastrar serviço!');
+                    Alert.alert(
+                        'Erro',
+                        'Erro ao cadastrar serviço',
+                        [{ text: 'OK' }],
+                    )
                 })
         }
     }

@@ -6,6 +6,7 @@ import {
     TextInput,
     Button,
     KeyboardAvoidingView,
+    Alert,
 } from 'react-native';
 
 import { useNavigation } from '@react-navigation/native';
@@ -51,7 +52,7 @@ const CriarOrdemDeServico = () => {
                 setCliente(clientes);
             })
             .catch(error => {
-                console.log(error);
+
             })
     };
 
@@ -100,7 +101,10 @@ const CriarOrdemDeServico = () => {
 
         Api.post('/ordemdeservico', ordemDeServico)
             .then(response => {
-                alert('Ordem de Serviço criada com sucesso!');
+                Alert.alert(
+                    'Sucesso',
+                    'Ordem de serviço criada com sucesso',
+                )
                 setTimeout(() => {
                     navigation.navigate('Home');
                 }, 2000);

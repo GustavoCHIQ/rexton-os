@@ -4,10 +4,12 @@ import {
   TextInput,
   KeyboardAvoidingView,
   Button,
-  StyleSheet
+  StyleSheet,
+  ScrollView,
+  Alert
 } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
-import { ScrollView } from 'react-native-gesture-handler';
 import Api from '../Services/Api';
 
 const CadastrarCliente = () => {
@@ -20,6 +22,8 @@ const CadastrarCliente = () => {
   const [telefone, setTelefone] = useState('');
   const [email, setEmail] = useState('');
   const [dataNascimento, setDataNascimento] = useState('');
+
+  const navigation = useNavigation();
 
   const formatarData = (data) => {
     const dataFormatada = data.split('/').reverse().join('-');
@@ -40,10 +44,21 @@ const CadastrarCliente = () => {
     }
     Api.post('/cliente', cliente)
       .then(response => {
-        console.log(response.data);
+        Alert.alert(
+          'Sucesso',
+          'Cliente cadastrado com sucesso',
+          [{ text: 'OK' }],
+          setTimeout(() => {
+            navigation.navigate('Home');
+          }, 2000)
+        )
       })
       .catch(error => {
-        console.log(error);
+        Alert.alert(
+          'Erro',
+          'Erro ao cadastrar cliente',
+          [{ text: 'OK' }],
+        )
       })
   }
 

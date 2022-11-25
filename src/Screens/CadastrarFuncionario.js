@@ -8,6 +8,7 @@ import {
     KeyboardAvoidingView,
     Button
 } from "react-native";
+import { useNavigation } from '@react-navigation/native';
 
 import Api from "../Services/Api";
 
@@ -19,6 +20,8 @@ const CadastrarFuncionario = () => {
     const [dataNascimento, setDataNascimento] = useState('');
     const [dataAdmissao, setDataAdmissao] = useState('');
     const [dataDemissao, setDataDemissao] = useState('');
+
+    const navigation = useNavigation();
 
     const formatarData = (data) => {
         const dataFormatada = data.split('/').reverse().join('-');
@@ -37,16 +40,30 @@ const CadastrarFuncionario = () => {
         }
 
         if (!nome || !cpf || !endereco || !dataNascimento || !dataAdmissao || !dataDemissao) {
-            alert('Preencha todos os campos!');
+            Alert.alert(
+                'Erro',
+                'Preencha todos os campos',
+                [{ text: 'OK' }],
+            )
             return;
         } else {
             Api.post('/funcionario', funcionario)
                 .then(response => {
-                    alert('Funcionário cadastrado com sucesso!');
-                    navigation.navigate('Home');
+                    Alert.alert(
+                        'Sucesso',
+                        'Funcionário cadastrado com sucesso',
+                        [{ text: 'OK' }],
+                    )
+                    setTimeout(() => {
+                        navigation.navigate('Home');
+                    }, 2000);
                 })
                 .catch(error => {
-                    alert('Erro ao cadastrar funcionário!');
+                    Alert.alert(
+                        'Erro',
+                        'Erro ao cadastrar funcionário',
+                        [{ text: 'OK' }],
+                    )
                 })
         }
     }

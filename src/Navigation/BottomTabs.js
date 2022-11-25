@@ -8,9 +8,6 @@ import {
     CadastroNavigation,
     CadastrarFuncionarioNavigation,
     CadastrarServicoNavigation,
-    CriarOrdemDeServicoNavigation,
-    CadastrarUsuarioNavigation,
-    DetalhesDaOSNavigation
 } from './StackNavigation';
 
 const Tab = createBottomTabNavigator();

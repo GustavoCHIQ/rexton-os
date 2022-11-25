@@ -1,15 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import {
     View,
     Text,
     StyleSheet,
     Button,
+    Alert,
+    ScrollView,
 } from 'react-native';
+import { useNavigation } from "@react-navigation/native";
 
 import Api from "../Services/Api";
-import { useNavigation } from "@react-navigation/native";
-import { ScrollView } from 'react-native-gesture-handler';
-
 
 const Details = ({ route }) => {
 
@@ -30,8 +30,14 @@ const Details = ({ route }) => {
             finalizado: true
         })
             .then(response => {
-                console.log(response.data);
-                navigation.goBack();
+                Alert.alert(
+                    'Sucesso',
+                    'Ordem de serviço finalizada com sucesso',
+                    [{ text: 'OK' }],
+                )
+                setTimeout(() => {
+                    navigation.navigate('Home');
+                }, 2000);
             })
             .catch(error => {
                 console.log(error);

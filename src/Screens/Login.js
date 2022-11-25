@@ -7,6 +7,7 @@ import {
   StyleSheet,
   Image,
   TouchableOpacity,
+  Alert,
 } from 'react-native';
 
 import Api from '../Services/Api';
@@ -22,18 +23,30 @@ const Login = ({ navigation }) => {
     };
 
     if (!email || !senha) {
-      alert('Preencha todos os campos!');
+      Alert.alert(
+        'Erro',
+        'Preencha todos os campos para continuar',
+        [{ text: 'OK' }],
+      )
       return;
     } else {
       Api.post('/login', usuario)
         .then(response => {
-          alert('Login realizado com sucesso!');
+          Alert.alert(
+            'Sucesso',
+            'Login realizado com sucesso',
+            [{ text: 'OK' }],
+          )
           setTimeout(() => {
             navigation.navigate('Home');
           }, 2000);
         })
         .catch(error => {
-          alert('Erro ao realizar login!');
+          Alert.alert(
+            'Erro',
+            'Usuário ou senha inválidos',
+            [{ text: 'OK' }],
+          )
         });
     }
   };
@@ -59,7 +72,7 @@ const Login = ({ navigation }) => {
           secureTextEntry={true}
         />
         <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Home')}>
+          <TouchableOpacity style={styles.button} onPress={() => logar()}>
             <Text style={styles.buttonText}>Entrar</Text>
           </TouchableOpacity>
           {/* Acessar tela de cadastro de usuario */}
@@ -80,9 +93,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   logo: {
-    width: 230,
-    height: 250,
-    marginBottom: 20,
+    width: 300,
+    height: 320,
+    marginBottom: 50,
     left: -15,
   },
   input: {
@@ -100,9 +113,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     width: 300,
-    height: 50,
+    height: 75,
   },
   button: {
+    marginTop: 25,
     backgroundColor: '#3498db',
     borderRadius: 3,
     justifyContent: 'center',
@@ -110,7 +124,7 @@ const styles = StyleSheet.create({
     width: 140,
   },
   buttonText: {
-    fontSize: 16,
+    fontSize: 18,
     color: '#fff',
   },
 });
