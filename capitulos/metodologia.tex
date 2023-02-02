@@ -1,7 +1,15 @@
 \chapter{Metodologia}
-Neste capítulo serão apresentados os levantamento de informações e os requisitos do trabalho. Antes de qualquer coisa devemos primeiramente entender o significado de metodologia, que nada mais é onde é permitido descrever o caminho percorrido para atingir o objetivo proposto, buscando solucionar a questão de pesquisa.
+Neste capítulo serão apresentados o que e como foi feito todo o desenvolvimento da aplicação. Antes de qualquer coisa devemos primeiramente entender o significado de metodologia, que nada mais é onde é permitido descrever o caminho percorrido para atingir o objetivo proposto, buscando solucionar a questão de pesquisa.
 
-Logo também precisamos entender o que é um modelo de caso de uso, É através dele onde podemos descrever como diferentes tipos de usuários interagem com o sistema para resolver um problema. Como tal, ele descreve as metas dos usuários, as interações entre os usuários e o sistema, bem como o comportamento necessário do sistema para satisfazer estas metas.
+Primeiramente foi feito totalmente do zero um serviço de API no backend para realizar todas as regras de negocio da aplicação, como cadastrar as informações, listar, editar e excluir. 
+
+Para a criação da API foi utilizada a linguagem javascript em conjunto com o NodeJS, o framework TypeORM e o gerenciador de banco de dados, PostgreSQL.
+
+O NodeJS foi utilizado no desenvolvimento das rotas para serem acessadas pelo frontend que é a aplicação em si.
+
+Já o TypeORM é nada mais que uma técnica que aproxima o paradigma de desenvolvimento de aplicativos orientados a objetos do paradigma de banco de dados relacional. A justificativa para se ter utilizado esse framework é evitar um problema chamado impedância objeto-relacional, logo o typeorm define uma técnica para realizar a conciliação onde ele define o modo como os dados serão mapeados entre os ambientes, como serão acessados e gravados. Isso diminui o tempo de desenvolvimento, uma vez que não é necessário perder tempo fazendo essa configuração.
+
+Por fim temos o PostgreSQL que é nada mais que um gerenciador de banco de dados relacionados que otimiza muito o trabalho de quem precisa administrar informações nesses níveis.
 
 A fim de expor detalhadamente os procedimentos e métodos que foram adotados no
 estudo, foi dividido em oito tópicos.
@@ -9,7 +17,7 @@ estudo, foi dividido em oito tópicos.
 \section{CASOS DE USO}
 \subsection{CASOS DE USO: EFETUAR LOGIN}
 \begin{flushleft}
-\textbf{Ator:}  Proprietário
+\textbf{Ator:}  Funcionário
 \\
 \textbf{Pré-Requisito:} Ter Cadastrado Senha e Login do Funcionário.
 \end{flushleft}
@@ -41,7 +49,7 @@ estudo, foi dividido em oito tópicos.
 
 \subsection{CASOS DE USO: CADASTRAR USUÁRIO}
 \begin{flushleft}
-\textbf{Ator:}  Proprietário
+\textbf{Ator:}  Funcionário
 \end{flushleft}
 
 \begin{figure}[htb]
@@ -184,7 +192,7 @@ estudo, foi dividido em oito tópicos.
 \begin{figure}[htb]
 	\caption{\label{fig_visao-geral} Diagrama de Atividades - Visão Geral do Sistema}
 	\begin{center}
-	    \includegraphics[width=0.7\linewidth]{imagens/diagrama-atividade-visao-geral.png}
+	    \includegraphics[width=0.75\linewidth]{imagens/diagrama-atividade-visao-geral.png}
 	\end{center}
 \end{figure}
 
@@ -202,7 +210,7 @@ estudo, foi dividido em oito tópicos.
 \begin{figure}[htb]
 	\caption{\label{fig_cadastro} Diagrama de Atividades - Cadastro do Sistema}
 	\begin{center}
-	    \includegraphics[width=0.8\linewidth]{imagens/usuarios.png}
+	    \includegraphics[width=0.7\linewidth]{imagens/usuarios.png}
 	\end{center}
 \end{figure}
 
@@ -261,11 +269,13 @@ estudo, foi dividido em oito tópicos.
 
 \newpage
 \section{DICIONÁRIO DE DADOS}
-O dicionário de dados é um documento que descreve, de forma estruturada, o significado, origem, relacionamento e uso dos dados.
+O dicionário de dados é um documento que descreve, de forma estruturada, o significado, origem, relacionamento e uso dos dados
+
+\newpage
 \subsection{ENTIDADE DE CLIENTES}
 \begin{figure}[htb]
 	\begin{center}
-	    \includegraphics[width=1\linewidth]{imagens/dc1.png}
+	    \includegraphics[width=0.8\linewidth]{imagens/dc1.png}
 	\end{center}
 \end{figure}
 
@@ -297,7 +307,7 @@ O dicionário de dados é um documento que descreve, de forma estruturada, o sig
 \subsection{ENTIDADE DE ORDEM USUÁRIOS}
 \begin{figure}[htb]
 	\begin{center}
-	    \includegraphics[width=1\linewidth]{imagens/dc5.png}
+	    \includegraphics[width=0.8\linewidth]{imagens/dc5.png}
 	\end{center}
 \end{figure}
 
